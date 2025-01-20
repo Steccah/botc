@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trouble brewing</title>
+    <style type="text/css">
+        html {
+            background-color: #e1e3e0;
+        }
+
+        body {
+            max-width: 80.0rem;
+            margin: 0 auto 0 auto;
+            padding: 0.5rem 0.2rem;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 15fr;
+            border-top: 1px solid #000;
+        }
+
+        .grid>p:nth-child(3n+1) {
+            text-align: right;
+        }
+
+        .grid>div>p {
+            margin: 0.5em auto;
+        }
+
+        .grid img {
+            height: 7rem;
+        }
+
+        .red {
+            color: #c00;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 1.5rem;
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto 1rem auto;
+        }
+
+        .center {
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        .flavour {
+            font-style: italic;
+            padding-left: 2.0rem;
+            padding-right: 2.0rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="document">
+        <h1>Townsfolk - Cittadini</h1>
+        <div class="grid">
+            <p>Washerwoman</p>
+            <img src="icons/Icon_washerwoman.png" alt="">
+            <p>Inizi la giornata sapendo che un giocatore su 2 è un certo cittadino</p>
+
+            <p>Librarian</p>
+            <img src="icons/Icon_librarian.png" alt="">
+            <p>Inizi la giornata sapendo che un giocatore su 2 è un certo forestiero (o che nessun forestiero è in
+                gioco)</p>
+
+            <p>Investigator</p>
+            <img src="icons/Icon_investigator.png" alt="">
+            <p>Inizi la giornata sapendo che un giocatore su 2 è un certo Scagnozzo</p>
+
+            <p>Chef</p>
+            <img src="icons/Icon_chef.png" alt="">
+            <p>Inizi la giornata sapendo quante coppie di giocatori malvagi sono vicini</p>
+
+            <p>Empath</p>
+            <img src="icons/Icon_empath.png" alt="">
+            <p>Ogni notte, scopri quanti dei tuoi 2 vicini vivi sono malvagi</p>
+
+            <p>Fortune Teller</p>
+            <img src="icons/Icon_fortuneteller.png" alt="">
+            <p>Ogni notte, scegli 2 giocatori: scopri se uno di loro è il Demone. Un giocatore buono ti risulta come
+                Demone</p>
+
+            <p>Undertaker</p>
+            <img src="icons/Icon_undertaker.png" alt="">
+            <p>Ogni notte*, scopri quale personaggio è stato giustiziato oggi</p>
+
+            <p>Monk</p>
+            <img src="icons/Icon_monk.png" alt="">
+            <p>Ogni notte*, scegli un giocatore (non te stesso): sarà al sicuro dal Demone stanotte</p>
+
+            <p>Ravenkeeper</p>
+            <img src="icons/Icon_ravenkeeper.png" alt="">
+            <p>Se muori di notte, vieni svegliato per scegliere un giocatore: scopri il suo personaggio</p>
+
+            <p>Virgin</p>
+            <img src="icons/Icon_virgin.png" alt="">
+            <p>La prima volta che vieni nominato, se chi ti nomina è un Cittadino, viene giustiziato immediatamente</p>
+
+            <p>Slayer</p>
+            <img src="icons/Icon_slayer.png" alt="">
+            <p>Una volta per partita, di giorno, scegli pubblicamente un giocatore: se è il Demone, muore</p>
+
+            <p>Soldier</p>
+            <img src="icons/Icon_soldier.png" alt="">
+            <p>Sei al sicuro dal Demone</p>
+
+            <p>Major</p>
+            <img src="icons/Icon_mayor.png" alt="">
+            <p>Se rimangono solo 3 giocatori vivi e non c'è nessuna esecuzione, la tua squadra vince. Se muori di notte,
+                un altro giocatore potrebbe morire al tuo posto</p>
+        </div>
+
+        <code>*Non la prima notte</code>
+
+        <h1>Outsiders - Forestieri</h1>
+        <div class="grid">
+            <p>Butler</p>
+            <img src="icons/Icon_butler.png" alt="">
+            <p>Ogni notte, scegli un giocatore (non te stesso): domani, puoi votare solo se vota anche lui</p>
+
+            <p>Drunk</p>
+            <img src="icons/Icon_drunk.png" alt="">
+            <p>Non sai di essere l'Ubriaco. Pensi di essere un personaggio Cittadino, ma non lo sei</p>
+
+            <p>Recluse</p>
+            <img src="icons/Icon_recluse.png" alt="">
+            <p>Potresti risultare malvagio e come Scagnozzo o Demone, anche da morto</p>
+
+            <p>Saint</p>
+            <img src="icons/Icon_saint.png" alt="">
+            <p>Se muori per esecuzione, la tua squadra perde</p>
+        </div>
+
+        <h1>Minions - Scagnozzi</h1>
+        <div class="grid">
+            <p>Poisoner</p>
+            <img src="icons/Icon_poisoner.png" alt="">
+            <p>Ogni notte, scegli un giocatore: sarà avvelenato stanotte e domani durante il giorno</p>
+
+            <p>Spy</p>
+            <img src="icons/Icon_spy.png" alt="">
+            <p>Ogni notte, vedi il Grimorio. Potresti risultare come buono e come Cittadino o Forestiero, anche da morto
+            </p>
+
+            <p>Scarlet Woman</p>
+            <img src="icons/Icon_scarletwoman.png" alt="">
+            <p>Se ci sono 5 o più giocatori vivi (i Viaggiatori non contano) e il Demone muore, diventi il Demone</p>
+
+            <p>Baron</p>
+            <img src="icons/Icon_baron.png" alt="">
+            <p>Ci sono Forestieri extra in gioco [+2 Forestieri]</p>
+        </div>
+
+        <h1>Demons - Demoni</h1>
+        <div class="grid">
+            <p>Imp</p>
+            <img src="icons/Icon_imp.png" alt="">
+            <p>Ogni notte, scegli un giocatore: lo uccidi. Se ti uccidi in questo modo, uno scagnozzo diventa il nuovo
+                Imp</p>
+        </div>
+
+        <hr>
+
+
+        <p class="flavour">Le nubi si addensano su Ravenswood Bluff, avvolgendo questa sonnolenta cittadina e i suoi
+            abitanti
+            superstiziosi in un'inquietante ombra. Panni appena lavati danzano in modo sinistro sui fili tesi tra le
+            case. I camini tossiscono pennacchi di fumo nell'aria. Profumi esotici filtrano attraverso le crepe delle
+            finestre e sotto le porte, mentre calderoni nascosti ribollono. Una brezza autunnale insolitamente calda
+            avvolge i muri ricoperti d'edera e sussurra minacciosamente a coloro che sono abbastanza coraggiosi da
+            camminare per le strade acciottolate.</p>
+
+        <p class="flavour">Madri ansiose richiamano i loro figli dal gioco mentre i tuoni cominciano a risuonare
+            all'orizzonte. Se si
+            ascolta più attentamente, però, si possono sentire echi di rumori ancora più strani provenire dalla foresta
+            vicina. Sotto l'occhio vigile di un monastero che incombe, figure in controluce saltano da un portone
+            all'altro.</p>
+
+        <p class="flavour">Coloro che sanno leggere i segni sanno che ci sono... <small>(guai in vista)</small></p>
+
+        <div class="center">
+            <img src="icons/Logo_trouble_brewing.png" alt="Guai in Vista" title="Guai in Vista">
+        </div>
+
+        <h1>Giocatori</h1>
+        <table>
+            <tr>
+                <th>Giocatori</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15+</th>
+            </tr>
+            <tr>
+                <th>Cittadini</th>
+                <td>3</td>
+                <td>3</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>9</td>
+                <td>9</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <th>Forestieri</th>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <th>Scagnozzi</th>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>3</td>
+                <td>3</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <th>Demone</th>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+        </table>
+
+        <h1>Prima notte</h1>
+
+        <p>I giocatori hanno gli occhi chiusi.
+            Aspetta circa 10 secondi.
+            Ogni Viaggiatore con abilità della prima notte agisce.👁️ 😴</p>
+
+        <div class="grid">
+            <p>Informazioni degli scagnozzi</p>
+            <img alt="">
+            <div>
+                <p>Se ci sono 7 o più giocatori:</p>
+                <p>• Se c'è più di uno Scagnozzo, si guardano tutti tra di loro.👁️</p>
+                <p>• Mostra la carta "Questo è il Demone". Indica il Demone.😴</p>
+            </div>
+
+            <p>Informazioni del Demone</p>
+            <img src="icons/Icon_imp.png" alt="">
+            <div>
+                <p>Se ci sono 7 o più giocatori:</p>
+                <p>• Mostra la carta "Questi sono i tuoi scagnozzi". Indica ogni Scagnozzo.👁️</p>
+                <p>• Mostra la carta "Questi personaggi non sono in gioco". Mostra 3 segnalini di personaggi buoni non
+                    in gioco.😴</p>
+            </div>
+
+            <p>Poisoner</p>
+            <img src="icons/Icon_poisoner.png" alt="">
+            <div>
+                <p>• Il Poisoner indica un giocatore. Quel giocatore è avvelenato.👁️ 😴 🪙</p>
+            </div>
+
+            <p>Spy</p>
+            <img src="icons/Icon_spy.png" alt="">
+            <div>
+                <p>• Mostra il Grimorio alla Spia per tutto il tempo necessario.👁️ 😴</p>
+            </div>
+
+            <p>Washerwoman</p>
+            <img src="icons/Icon_washerwoman.png" alt="">
+            <div>
+                <p>🪙🪙</p>
+                <p>• Mostra il segnalino di un Cittadino in gioco. Indica due giocatori, uno dei quali è quel
+                    personaggio.👁️ 😴</p>
+            </div>
+
+            <p>Librarian</p>
+            <img src="icons/Icon_librarian.png" alt="">
+            <div>
+                <p>🪙🪙</p>
+                <p>Se ci sono Forestieri in gioco:</p>
+                <p>• Mostra il segnalino di un Forestiero in gioco. Indica due giocatori, uno dei quali è quel
+                    personaggio.👁️ 😴</p>
+                <p>Altrimenti:</p>
+                <p>• Mostra il segnale della mano per il numero "zero".👁️ 😴</p>
+            </div>
+
+            <p>Investigator</p>
+            <img src="icons/Icon_investigator.png" alt="">
+            <div>
+                <p>🪙🪙</p>
+                <p>• Mostra il segnalino di uno Scagnozzo in gioco. Indica due giocatori, uno dei quali è quel
+                    personaggio.👁️ 😴</p>
+            </div>
+
+            <p>Chef</p>
+            <img src="icons/Icon_chef.png" alt="">
+            <div>
+                <p>• Mostra il segnale della mano (0, 1, 2, ecc.) per il numero di coppie di giocatori malvagi vicini
+                    tra loro.👁️ 😴</p>
+            </div>
+
+            <p>Empath</p>
+            <img src="icons/Icon_empath.png" alt="">
+            <div>
+                <p>• Mostra il segnale della mano (0, 1, 2) per il numero di vicini malvagi vivi dell'Empath.👁️ 😴</p>
+            </div>
+
+            <p>Fortune Teller</p>
+            <img src="icons/Icon_fortuneteller.png" alt="">
+            <div>
+                <p>• Il Fortune Teller indica due giocatori.👁️</p>
+                <p>• Mostra il segnale della testa (annuisci "sì", scuoti "no") per indicare se uno di quei giocatori è
+                    un Demone o è segnato come "Esca"; "sì" in entrambi i casi, "no" altrimenti.😴</p>
+            </div>
+
+            <p>Butler</p>
+            <img src="icons/Icon_butler.png" alt="">
+            <div>
+                <p>• Il Butler indica un giocatore. Segna quel giocatore come "Padrone".👁️ 😴 🪙</p>
+            </div>
+
+            <p>Alba</p>
+            <img src="" alt="">
+            <div>
+                <p>• Aspetta circa 10 secondi.</p>
+                <p>• Chiedi di aprire gli occhi; annuncia immediatamente quali giocatori (se ce ne sono) sono morti.</p>
+            </div>
+
+        </div>
+
+        <h1>Altre notti</h1>
+        <div class="grid">
+            <p>Tramonto</p>
+            <img src="" alt="">
+            <div>
+                <p>• Aspetta circa 10 secondi.</p>
+                <p>• Ogni Viaggiatore con abilità notturne agisce.👁️ 😴</p>
+            </div>
+
+            <p>Poisoner</p>
+            <img src="icons/Icon_poisoner.png" alt="">
+            <div>
+                <p>• Il giocatore "Avvelenato" non è più avvelenato. ✖️🪙</p>
+                <p>• Il Poisoner indica un giocatore. Quel giocatore è avvelenato.👁️ 😴 🪙</p>
+            </div>
+
+            <p>Monk</p>
+            <img src="icons/Icon_monk.png" alt="">
+            <div>
+                <p>• Il giocatore "Protetto" non è più protetto. ✖️🪙</p>
+                <p>• Il Monaco indica un giocatore che non sia se stesso. Segna quel giocatore come "Protetto".👁️ 😴 🪙
+                </p>
+            </div>
+
+            <p>Spy</p>
+            <img src="icons/Icon_spy.png" alt="">
+            <div>
+                <p>• Mostra il Grimorio alla Spia per tutto il tempo necessario.👁️ 😴</p>
+            </div>
+
+            <p>Scarlet Woman</p>
+            <img src="icons/Icon_scarletwoman.png" alt="">
+            <div>
+                <p>Quando la Scarlet Woman diventa il Demone:</p>
+                <p>• Mostra la carta "Tu sei", poi il segnalino del personaggio Demone.👁️ 😴</p>
+            </div>
+
+            <p>Imp</p>
+            <img src="icons/Icon_imp.png" alt="">
+            <div>
+                <p>• L'Imp indica un giocatore. Quel giocatore muore.👁️ 😴 🪙</p>
+                <p>Se l'Imp ha scelto se stesso:</p>
+                <p>• Sostituisci il personaggio di uno Scagnozzo con un segnalino Imp di riserva. 🪙</p>
+                <p>• Sveglia il nuovo Imp. Mostra la carta "Tu sei", poi il segnalino Imp.👁️ 😴</p>
+            </div>
+
+            <p>Ravenkeeper</p>
+            <img src="icons/Icon_ravenkeeper.png" alt="">
+            <div>
+                <p>Se il Ravenkeeper è morto stanotte:</p>
+                <p>• Il Ravenkeeper indica un giocatore. Mostra il segnalino del personaggio di quel giocatore.👁️ 😴
+                </p>
+            </div>
+
+            <p>Undertaker</p>
+            <img src="icons/Icon_undertaker.png" alt="">
+            <div>
+                <p>Se un giocatore è stato giustiziato oggi:</p>
+                <p>• Mostra il segnalino del personaggio di quel giocatore.👁️ 😴</p>
+            </div>
+
+            <p>Empath</p>
+            <img src="icons/Icon_empath.png" alt="">
+            <div>
+                <p>• Mostra il segnale della mano (0, 1, 2) per il numero di vicini malvagi vivi dell'Empath.👁️ 😴</p>
+            </div>
+
+            <p>Fortune Teller</p>
+            <img src="icons/Icon_fortuneteller.png" alt="">
+            <div>
+                <p>• Il Fortune Teller indica due giocatori.👁️</p>
+                <p>• Mostra il segnale della testa (annuisci "sì", scuoti "no") per indicare se uno di quei giocatori è
+                    un Demone o è segnato come "Esca"; "sì" in entrambi i casi, "no" altrimenti.😴</p>
+            </div>
+
+            <p>Butler</p>
+            <img src="icons/Icon_butler.png" alt="">
+            <div>
+                <p>• Il giocatore "Padrone" non è più il Padrone. ✖️🪙</p>
+                <p>• Il Butler indica un giocatore. Segna quel giocatore come "Padrone".👁️ 😴 🪙</p>
+            </div>
+
+            <p>Dawn</p>
+            <img alt="">
+            <div>
+                <p>• Aspetta circa 10 secondi.</p>
+                <p>• Chiedi di aprire gli occhi; annuncia immediatamente quali giocatori (se ce ne sono) sono morti.</p>
+            </div>
+        </div>
+
+
+        <small class="center">2025 Stecca, basato su progetti di © <a href="https://bloodontheclocktower.com/">2014-2025
+                Steven Medway e
+                The Pandemonium Institute.</a>
+        </small>
+    </div>
+</body>
+
+</html>
